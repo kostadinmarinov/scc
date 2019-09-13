@@ -7,7 +7,7 @@ namespace scc
     {
         static void Main(string[] args)
         {
-            Dictionary<int, IEnumerable<int>> g = new Dictionary<int, IEnumerable<int>>
+            Dictionary<int, IList<int>> g = new Dictionary<int, IList<int>>
             {
                 { 1, new [] { 4, 2, 3,  } },
                 { 2, new [] { 3 } },
@@ -21,8 +21,11 @@ namespace scc
             scc.Find(g.Keys, v => g[v], (sccKey, sccVerticies, vs) => Console.WriteLine($"{sccKey}: {string.Join(", ", sccVerticies)}"));
 
             Dfs<int> dfs = new Dfs<int>();
-            IEnumerable<int> traversed = dfs.Traverse(g.Keys, v => g[v]);
-            Console.WriteLine($"DFS: {string.Join(", ", traversed)}");
+            IEnumerable<int> traversed1 = dfs.Traverse2(g.Keys, v => g[v]);
+            Console.WriteLine($"DFS 1: {string.Join(", ", traversed1)}");
+
+            IEnumerable<int> traversed2 = dfs.Traverse2(g.Keys, v => g[v]);
+            Console.WriteLine($"DFS 2: {string.Join(", ", traversed2)}");
 
             Console.Read();
         }
